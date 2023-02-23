@@ -1,36 +1,58 @@
 <template>
-  <v-form @submit.prevent="createTodo">
-    <v-row class="align-center">
+  <v-form>
+    <hr>
+    <v-row class="align-center adjust-top">
       <v-col cols="12" md="6">
         <v-flex>
-          <v-text-field class="pt-5" v-model="newTodo" label="Add Item here"/>
+          <v-text-field
+            class="pt-5"
+            v-model="form.inputText"
+            :rules="[v => !!v || 'Field is required']"
+            label="Add Item here"/>
         </v-flex>
       </v-col>
       <v-col cols="12" md="6">
-        <v-btn rounded type="submit" color="primary">Add item</v-btn>
+        <v-btn rounded type="button" color="primary" @click="submitForm">Add item</v-btn>
       </v-col>
     </v-row>
   </v-form>
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+import { mapGetters,  mapActions} from 'vuex'
 export default {
 name: "AddForm",
   data() {
     return {
-      inputText: ''
+      form: {
+        inputText: "",
+      }
     }
   },
   methods: {
-    submitForm() {
-      // handle form submission here
-    }
-  }
+      submitForm(){
+        this.$store.dispatch("items/createItem", this.form.inputText)
+          .then((res) => {
+            Swal.fire({
+              title: 'Succesfully',
+              text: res.data.message,
+              icon: 'success',
+            });
+          }).catch(err => {
+          Swal.fire({
+            title: 'Hurry',
+            text: err,
+            icon: 'warning',
+          });
+        })
+      },
+    },
 }
 </script>
 
 <style scoped>
 .adjust-top{
-  margin-top: 20px;
+  margin-top: 5%;
 }
 </style>

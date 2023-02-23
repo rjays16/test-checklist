@@ -15,7 +15,7 @@ use App\Http\Controllers\ItemController;
 */
 
 Route::prefix('items')->group(function () {
-   Route::post('', [ItemController::class, 'store']);
+    Route::post('', [ItemController::class,'store']);
 });
 
 
