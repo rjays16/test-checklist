@@ -16,6 +16,8 @@ use App\Http\Controllers\ItemController;
 
 Route::prefix('items')->group(function () {
     Route::post('', [ItemController::class,'store']);
+    Route::get('', [ItemController::class,'getItem']);
+    Route::put('{id}', [ItemController::class,'update']);
 });
 
 

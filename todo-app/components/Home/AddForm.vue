@@ -32,22 +32,37 @@ name: "AddForm",
   },
   methods: {
       submitForm(){
-        this.$store.dispatch("items/createItem", this.form.inputText)
-          .then((res) => {
+        if(this.form.inputText != "") {
+          this.$store.dispatch("items/createItem", this.form.inputText)
+            .then((res) => {
+              Swal.fire({
+                title: 'Succesfull',
+                text: "Successfully Added Items",
+                icon: 'success',
+              });
+              setTimeout(() => {
+                window.location.reload()
+              }, 3000);
+            }).catch(err => {
             Swal.fire({
-              title: 'Succesfully',
-              text: res.data.message,
-              icon: 'success',
+              title: 'Hurry',
+              text: err,
+              icon: 'warning',
             });
-          }).catch(err => {
+          })
+        } else {
           Swal.fire({
-            title: 'Hurry',
-            text: err,
+            title: 'Empty',
+            text: "The text field is empty",
             icon: 'warning',
           });
-        })
+        }
       },
     },
+
+  getItems(){
+
+  }
 }
 </script>
 
