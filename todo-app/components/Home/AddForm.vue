@@ -35,11 +35,11 @@ name: "AddForm",
         if(this.form.inputText != "") {
           this.$store.dispatch("items/createItem", this.form.inputText)
             .then((res) => {
-              Swal.fire({
-                title: 'Succesfull',
-                text: "Successfully Added Items",
-                icon: 'success',
-              });
+              // Swal.fire({
+              //   title: 'Succesfull',
+              //   text: "Successfully Added Items",
+              //   icon: 'success',
+              // });
               setTimeout(() => {
                 window.location.reload()
               }, 3000);
