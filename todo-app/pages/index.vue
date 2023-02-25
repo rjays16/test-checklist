@@ -5,7 +5,6 @@
         <v-card lass="mx-5 my-5 pb-5" max-width="374">
           <v-card-title> Checklist </v-card-title>
           <HomeMain/>
-          <HomeList/>
           <HomeAddForm class="margin-left"/>
         </v-card>
       </v-col>
