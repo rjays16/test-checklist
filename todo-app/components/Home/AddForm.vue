@@ -42,7 +42,7 @@ name: "AddForm",
               // });
               setTimeout(() => {
                 window.location.reload()
-              }, 3000);
+              }, 1000);
             }).catch(err => {
             Swal.fire({
               title: 'Hurry',
