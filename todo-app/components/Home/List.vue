@@ -1,7 +1,7 @@
 <template>
-        <v-list >
+        <v-list>
           <v-list-item v-for="items in listItems" :key="items.item">
-            <v-checkbox v-model="items.status"/>
+            <v-checkbox v-model="items.status" @click="updateItems(items.id, items.status)"/>
             <v-list-item-content
               :class="{ 'text-decoration-line-through': items.status }"
               @click="toggleCompleted()"
@@ -19,11 +19,7 @@ export default {
   name: "List",
   data() {
     return {
-      listItems: [{
-        item: "",
-        id: null,
-        status: false,
-      }],
+      listItems: [],
     }
   },
   methods: {
@@ -31,15 +27,17 @@ export default {
       this.$store.dispatch("items/getAllItems")
       .then((res) => {
         this.listItems = res.data;
-        console.log(this.listItems);
       })
     },
 
     toggleCompleted() {
-      this.listItems.status = this.listItems.status;
+      this.listItems.status = !this.listItems.status;
     },
-    updateItems(){
-      this.$store.dispatch("items/update", this.listItems.id)
+    updateItems(id, status){
+      this.$store.dispatch("items/update", {
+        id: id,
+        status: status
+      })
       .then((res) => {
         Swal.fire({
           title: 'Succesfull',

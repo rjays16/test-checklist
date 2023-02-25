@@ -34,7 +34,7 @@ class ItemController extends Controller
         $update->update();
         return response()->json([
             'status' => 'success',
-            'data' => $update
+            'data' => $update,
         ]);
     }
 }

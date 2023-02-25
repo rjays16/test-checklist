@@ -14,14 +14,25 @@ export const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${process.env.BASE_URL}items`, {
           item: payload
-      })
-        .then((response) => {
+      }).then((response) => {
           resolve(response.data);
         })
         .catch((error) => {
           reject(error);
         });
     });
+  },
+
+  update({}, data) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${process.env.BASE_URL}items/${data['id']}`, data)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err.response.data.message)
+        })
+    })
   },
 
   getAllItems(){
@@ -36,17 +47,6 @@ export const actions = {
     })
   },
 
-  update({}, data) {
-    return new Promise((resolve, reject) => {
-      axios.put(`${process.env.BASE_URL}items/${data['id']}`, data)
-        .then(res => {
-          resolve(res)
-        })
-        .catch(err => {
-          reject(err.response.data.message)
-        })
-    })
-  },
 };
 
 
