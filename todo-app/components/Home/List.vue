@@ -3,7 +3,7 @@
           <transition-group name="fade" mode="out-in">
             <v-list-item v-for="items in listItems" :key="items.id" v-if="!items.status">
               <v-checkbox v-model="items.status" @click="updateItems(items.id, items.status), toggleCompleted(items)"/>
-                  <v-list-item-content :class="{'line-through': items.status}">
+                  <v-list-item-content :class="{'line-through-wrapper': items.status}">
                     <v-list-item-title>{{ items.item }}</v-list-item-title>
                   </v-list-item-content>
             </v-list-item>
